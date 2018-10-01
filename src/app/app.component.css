@@ -1,0 +1,125 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+    background-image: linear-gradient(-90deg, #4069b4, #35cee2e7);
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+
+  .mat-toolbar.mat-primary {
+    background-color: rgb(0, 59, 92);
+  }
+
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+  }
+
+  .logo h1 {
+    padding-top: 5px;
+  }
+
+  .logo h1 a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .botonera {
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .botonera span {
+    font-weight: bold;
+  }
+
+  .button {
+    /* background-color: #4a5990; */
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 15px 0 5px;
+    position: relative;
+    /* border-radius: 5px;
+    border: 2px solid #7b8ccc; */
+  }
+
+  .button:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 1px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+  }
+
+  .button:hover:after {
+    /* background-color: #3a456e; */    
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .mat-drawer {
+    width: 15%;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .mat-drawer {
+    width: 15%;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .mat-drawer {
+    width: 15%;
+  }
+}

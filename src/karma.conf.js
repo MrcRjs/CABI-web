@@ -24,8 +24,23 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    autoWatch: false,
+    browsers: ['ChromeHeadless'],
+    concurrency: Infinity,
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          // Without a remote debugging port, Google Chrome exits immediately.
+          '--remote-debugging-port=9222',
+        ],
+        debug: true
+      }
+    },
+    singleRun: true,
+    browserNoActivityTimeout: 120000,
   });
 };

@@ -1,0 +1,76 @@
+<div class="content">
+  <div class="content-component">
+    <h1>Nuevo usuario</h1>
+    <!-- Form for a user's personal data -->
+    <form class="data-form">
+      <div class="row">
+          <div class="col">
+              <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Nombre">
+              </mat-form-field>
+        
+              <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Apellido paterno">
+              </mat-form-field>
+        
+              <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Apellido materno">
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="example-full-width">
+                  <input type="email" matInput placeholder="Email">
+                </mat-form-field>
+              
+                <mat-form-field class="example-full-width">
+                    <input type="password" matInput placeholder="Password">
+                </mat-form-field>
+          
+                <mat-form-field class="example-full-width">
+                  <input type="password" matInput placeholder="Confirm password">
+                </mat-form-field>
+            </div>
+      </div>
+      <div class="row">
+          <mat-form-field>
+            <mat-select placeholder="Tipo" [(value)]="userType">
+              <mat-option *ngFor="let types of userTypes" [value]="types">
+                {{types}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+    </form>
+    <!-- Form for a user's bicycles -->
+    <h2 *ngIf="isUser()">Bicicleta</h2>
+    <form class="data-form" *ngIf="isUser()">
+        <div class="row col">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Marcas" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="chooseFirstOption()">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getValue($event.option.value)'>
+              <mat-option *ngFor="let marca of filteredOptions | async" [value]="marca">
+                {{marca}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-select placeholder="Color" [(value)]="seletedColor">
+              <mat-option *ngFor="let color of colores" [value]="color">
+                {{color}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+          <mat-form-field class="example-full-width">
+            <input type="number" matInput placeholder="Rodada" min="0">
+          </mat-form-field>
+        </div>
+    </form>
+    <button class="button add" mat-flat-button color="primary" matTooltip="Save user" (click)="openModal()">
+      <i class="material-icons">
+          person_add
+      </i>
+    </button>
+  </div>
+</div>
