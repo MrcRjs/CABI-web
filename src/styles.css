@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+    font-family: 'Source Sans Pro', arial;
+}
+.content {
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 25px 0;
+    box-sizing: border-box;
+    background-image: linear-gradient(-90deg, #4069b4, #35cee2e7);
+}
