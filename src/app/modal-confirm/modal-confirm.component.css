@@ -1,0 +1,15 @@
+.content-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.add {
+    background-color: rgb(118 183 42);
+}
