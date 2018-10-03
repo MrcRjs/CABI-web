@@ -1,17 +1,21 @@
 <div class="content">
   <div class="form-login">
       <div class="head">Login</div>
-      <div class="body">
-        <form class="example-form">
+      <form>
+        <div class="body">
+          <div class="example-form">
             <mat-form-field class="example-full-width">
-              <input type="email" matInput placeholder="Email">
+              <input type="email" matInput placeholder="Email" [(ngModel)]="email" name="email">
             </mat-form-field>
           
             <mat-form-field class="example-full-width">
-                <input type="password" matInput placeholder="Password">
+                <input type="password" matInput placeholder="Password" [(ngModel)]="pass" name="password">
             </mat-form-field>
-          </form>
-      </div>
-      <div class="footer"> <button class="button" mat-stroked-button color="primary" (click)="login()">Ok</button></div>
+          </div>
+        </div>
+        <div class="footer"> 
+          <button class="button" mat-stroked-button color="primary" (click)="login()">Ok</button>
+        </div>
+      </form>
   </div>
 </div>

@@ -2,22 +2,22 @@
 
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { UsuariosRegisterComponent } from './usuarios-register.component';
+// import { UsuariosEditComponent } from './usuarios-edit.component';
 
-// describe('UsuariosRegisterComponent', () => {
-//   let component: UsuariosRegisterComponent;
-//   let fixture: ComponentFixture<UsuariosRegisterComponent>;
+// describe('UsuariosEditComponent', () => {
+//   let component: UsuariosEditComponent;
+//   let fixture: ComponentFixture<UsuariosEditComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ UsuariosRegisterComponent ],
+//       declarations: [ UsuariosEditComponent ],
 //       schemas: [CUSTOM_ELEMENTS_SCHEMA]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(UsuariosRegisterComponent);
+//     fixture = TestBed.createComponent(UsuariosEditComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
