@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShareLoginService } from '../services/shareLogin.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { AuthService } from '../services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,22 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,
-              private shareLoginService: ShareLoginService,
-              private localStorageService: LocalStorageService) { }
+  user = null;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {}
+
+  signInWithGoogle() {
+      this.authService.signInWithGoogle()
+      .then((res) => {
+          this.router.navigate(['/usuarios'])
+        })
+      .catch((err) => console.log(err));
+    }
 
   ngOnInit() {
   }
 
-  login() {
-    this.router.navigate(['usuarios']);
-    this.shareLoginService.setLogin(true);
-    this.localStorageService.set('logged', true);
-  }
 }

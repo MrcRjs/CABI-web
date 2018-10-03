@@ -7,6 +7,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
 // Componentes
 import { LoginComponent } from './login/login.component';
 import { UsuariosListComponent } from './usuarios-list/usuarios-list.component';
@@ -17,6 +22,8 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 
 // Services
 import { ShareLoginService } from './services/shareLogin.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from 'app/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,12 +39,15 @@ import { ShareLoginService } from './services/shareLogin.service';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     MaterialModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     LocalStorageModule.withConfig({
       prefix: '',
       storageType: 'localStorage'
     })
   ],
-  providers: [ShareLoginService],
+  providers: [AuthService, AuthGuard, ShareLoginService],
   entryComponents: [ModalConfirmComponent],
   bootstrap: [AppComponent]
 })

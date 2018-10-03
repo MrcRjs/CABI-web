@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-usuarios-list',
@@ -13,7 +14,7 @@ export class UsuariosListComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(public authService: AuthService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
