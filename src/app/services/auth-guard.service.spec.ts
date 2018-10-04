@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuardService } from './auth-guard.service';
 import { Router} from '@angular/router';
 /*
 TestBed.configureTestingModule({

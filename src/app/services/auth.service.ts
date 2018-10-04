@@ -1,52 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
-
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-	private user: Observable<firebase.User>;
-    private userDetails: firebase.User = null;
 
-    constructor(private _firebaseAuth: AngularFireAuth, private router: Router) { 
-        this.user = _firebaseAuth.authState;
-        this.user.subscribe(
-            (user) => {
-                if (user) {
-                    this.userDetails = user;
-                    console.log(this.userDetails);
-                }
-                else {
-                    this.userDetails = null;
-                }
-            }
-            );
-    }
+  public user: Observable<firebase.User>;
+  private authState: any;
 
-    signInWithGoogle() {
-        return this._firebaseAuth.auth.signInWithPopup(
-            new firebase.auth.GoogleAuthProvider()
-            )
-    }
+  constructor(public afAuth: AngularFireAuth,
+              private db: AngularFireDatabase) {
+                this.user = afAuth.authState;
+              }
 
+  get currentUserId(): string {
+    return this.authState !== null ? this.authState.uid : '';
+  }
+  /*
+  signInWithGoogle() {
+      return this._firebaseAuth.auth.signInWithPopup(
+          new firebase.auth.GoogleAuthProvider()
+          )
+  }*/
+  
+  login(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
 
-    isLoggedIn() {
-        return this.userDetails !== null; 
-    }
+  signUp(email: string, password: string, displayName: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
 
-    get currentUser(): any {
-    return this.isLoggedIn() ? this.userDetails : null;
-    }
-
-    get currentUserDisplayName(): string {
-        if (!this.isLoggedIn()) { return 'Guest' }
-        else { return this.userDetails['displayName'] || 'Anónimo' }
-    }
-
-    logout() {
-        this._firebaseAuth.auth.signOut()
-        .then((res) => this.router.navigate(['/']));
-    }
+  logout() {
+    return this.afAuth.auth.signOut();
+  }
 }

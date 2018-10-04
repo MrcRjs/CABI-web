@@ -9,6 +9,9 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 })
 export class ModalConfirmComponent implements OnInit {
 
+  message = '';
+  messageResult = '';
+  route: string;
   constructor(public dialogRef: MatDialogRef<ModalConfirmComponent>,
               public notificacionSnackBar: MatSnackBar,
               private router: Router,
@@ -18,14 +21,16 @@ export class ModalConfirmComponent implements OnInit {
   }
 
   save() {
-    this.notificacionSnackBar.open( 'Operación exitosa.', '', {
+    this.notificacionSnackBar.open( this.messageResult, '', {
       duration: 2000,
     } );
-    this.dialogRef.close();
-    this.router.navigate(['usuarios']);
+    this.dialogRef.close(true);
+    if (this.route) {
+      this.router.navigate([this.route]);
+    }
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

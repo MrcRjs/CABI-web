@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 // tslint:disable-next-line:import-blacklist
 import { take, map, tap } from 'rxjs/operators';
 
-
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class NotAuthGuardService implements CanActivate {
     constructor( public authService: AuthService, public router: Router ) {
     }
 
@@ -15,10 +14,10 @@ export class AuthGuardService implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> {
 
-        return this.authService.afAuth.authState.pipe(take(1), map(authState => !!authState), tap(loggedIn => {
+        return this.authService.afAuth.authState.pipe(take(1), map(authState => !authState), tap(loggedIn => {
             if (!loggedIn) {
             console.log('access denied');
-            this.router.navigate(['login']);
+            this.router.navigate(['usuarios']);
             }
         }));
     }
