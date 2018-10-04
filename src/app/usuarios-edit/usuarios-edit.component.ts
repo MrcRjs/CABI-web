@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class UsuariosEditComponent implements OnInit {
 
   userTypes = ['USUARIO', 'ADMINISTRADOR', 'DASU', 'VISITANTE'];
-  user: User;
+  user: User = new User();
   exist = true;
 
   constructor(private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class UsuariosEditComponent implements OnInit {
           this.userService.getUser(params['uid']).snapshotChanges().subscribe( user => {
             if (this.exist = user.key != null) {
               const x = user.payload.toJSON();
-              this.user = x as User;
+              this.user = new User(x);
             } else {
               this.sendMessageError('El usuario no existe.');
             }

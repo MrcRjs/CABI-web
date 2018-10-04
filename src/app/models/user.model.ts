@@ -6,13 +6,22 @@ export class User {
     aM?: string;
     tipoCuenta?: string;
 
-    constructor() {
-        if (!this.uid) { this.uid = ''; }
-        if (!this.email) { this.email = ''; }
-        if (!this.nombre) { this.nombre = ''; }
-        if (!this.aP) { this.aP = ''; }
-        if (!this.aM) { this.aM = ''; }
-        if (!this.tipoCuenta) { this.tipoCuenta = ''; }
+    constructor(data?: Object) {
+        if (data) {
+            this.uid = data['uid'];
+            this.nombre = data['nombre'];
+            this.aP = data['aP'];
+            this.aM = data['aM'];
+            this.email = data['email'];
+            this.tipoCuenta = data['tipoCuenta'];
+        } else {
+            if (!this.uid) { this.uid = ''; }
+            if (!this.email) { this.email = ''; }
+            if (!this.nombre) { this.nombre = ''; }
+            if (!this.aP) { this.aP = ''; }
+            if (!this.aM) { this.aM = ''; }
+            if (!this.tipoCuenta) { this.tipoCuenta = ''; }
+        }
     }
 
     toUpperCase() {
