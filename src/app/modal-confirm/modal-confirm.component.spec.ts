@@ -1,26 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { ModalConfirmComponent } from './modal-confirm.component';
-/*
-describe('ModalConfirmComponent', () => {
-  let component: ModalConfirmComponent;
-  let fixture: ComponentFixture<ModalConfirmComponent>;
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ModalConfirmComponent ]
-    })
-    .compileComponents();
-  }));
+// import { ModalConfirmComponent } from './modal-confirm.component';
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ModalConfirmComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('ModalConfirmComponent', () => {
+//   let component: ModalConfirmComponent;
+//   let fixture: ComponentFixture<ModalConfirmComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
-*/
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ ModalConfirmComponent ],
+//       schemas: [CUSTOM_ELEMENTS_SCHEMA]
+//     })
+//     .compileComponents();
+//   }));
+
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(ModalConfirmComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

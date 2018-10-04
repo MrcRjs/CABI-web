@@ -1,54 +1,138 @@
-.content-component {
-    max-width: 100%;
-    max-height: 100%;
-    margin-bottom: 25px;
+input {
+    text-transform: uppercase;
 }
 
-.content-component h1 {
+.marco {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.marco h1,h2 {
     color: #fff;
-    font-size: 35px;
     text-align: center;
 }
 
-.content-component h2 {
-    color: #fff;
+.marco h1 {
+    font-size: 35px;
+}
+
+.marco h2 {
     font-size: 25px;
+}
+
+.field-full {
+    display: block;
+}
+
+.alert {
+    font-style: italic;
+}
+
+.alert-danger{
+    color: #f44545;
+}
+
+.wrapper-form {
+    background-color: #fff;
+    border-radius: 3px;
+    min-width: 150px;
+    padding: 15px 35px;
+}
+
+.content-form,.content-qr {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-qr {
+    justify-content: center;
+    align-items: center;
+}
+ 
+.qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff94;
+    border-radius: 40px;
+    border: 11px dashed #003b5c;
+    width: 256px;
+    height: 256px;
+}
+
+.qr h5{
+    color: #fff;
+    text-align: center;
 }
 
 .button {
     border-radius: 20px;
+    margin-top: 15px;
 }
 
 .add {
     background-color: rgb(118 183 42);
-    width: 100%;
+    width: 256px;
 }
 
-.data-form {
-    background-color: #fff;
-    border-radius: 3px;
-    margin: 25px 0;
-    min-width: 150px;
-    width: 100%;
+.reset {
+    background-color: rgb(237 113 2);
+    width: 256px;
 }
 
-/* .example-form .col {
-    margin: 0 25px;
-} */
-
-.example-full-width {
-    width: 100%;
-    margin: 0 5px;
-}
-
-.row {
+.submit {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 0;
-    
 }
 
-.col {
-    margin: 0 25px;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .field-tipo {
+        padding: 0 20px;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .field-tipo {
+        padding: 0 20px;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .field-tipo {
+        padding: 0 20px;
+    }
 }

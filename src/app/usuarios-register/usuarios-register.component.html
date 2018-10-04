@@ -1,76 +1,141 @@
-<div class="content">
-  <div class="content-component">
-    <h1>Nuevo usuario</h1>
-    <!-- Form for a user's personal data -->
-    <form class="data-form">
-      <div class="row">
-          <div class="col">
-              <mat-form-field class="example-full-width">
-                <input type="text" matInput placeholder="Nombre">
-              </mat-form-field>
-        
-              <mat-form-field class="example-full-width">
-                <input type="text" matInput placeholder="Apellido paterno">
-              </mat-form-field>
-        
-              <mat-form-field class="example-full-width">
-                <input type="text" matInput placeholder="Apellido materno">
-              </mat-form-field>
-            </div>
-            <div class="col">
-              <mat-form-field class="example-full-width">
-                  <input type="email" matInput placeholder="Email">
+  <div class="marco">
+      <h1>Nuevo usuario</h1>
+      <!-- Form for a user's personal data -->
+      <form>
+        <div class="wrapper-form">
+          <div class="content-form">
+            <div class="separador">
+                <mat-form-field class="field-full">
+                  <input type="text" matInput placeholder="Nombre" [(ngModel)]="user.nombre" name="nombre" #nombre="ngModel" required minlength="4" >
                 </mat-form-field>
-              
-                <mat-form-field class="example-full-width">
-                    <input type="password" matInput placeholder="Password">
+                
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                  <div *ngIf="nombre.errors.required">
+                    El nombre es requerido.
+                  </div>
+                  <div *ngIf="nombre.errors.minlength">
+                    El nombre debe tener al menos 4 caracteres de longitud.
+                  </div>
+                </div>
+            
+                <mat-form-field class="field-full">
+                  <input type="text" matInput placeholder="Apellido paterno" [(ngModel)]="user.aP" name="aP" #aP="ngModel" required minlength="4">
                 </mat-form-field>
-          
-                <mat-form-field class="example-full-width">
-                  <input type="password" matInput placeholder="Confirm password">
-                </mat-form-field>
-            </div>
-      </div>
-      <div class="row">
-          <mat-form-field>
-            <mat-select placeholder="Tipo" [(value)]="userType">
-              <mat-option *ngFor="let types of userTypes" [value]="types">
-                {{types}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      </div>
-    </form>
-    <!-- Form for a user's bicycles -->
-    <h2 *ngIf="isUser()">Bicicleta</h2>
-    <form class="data-form" *ngIf="isUser()">
-        <div class="row col">
-          <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Marcas" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="chooseFirstOption()">
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getValue($event.option.value)'>
-              <mat-option *ngFor="let marca of filteredOptions | async" [value]="marca">
-                {{marca}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+                
+                <div *ngIf="aP.invalid && (aP.dirty || aP.touched)" class="alert alert-danger">
+                  <div *ngIf="aP.errors.required">
+                    El apellido paterno es requerido.
+                  </div>
+                  <div *ngIf="aP.errors.minlength">
+                    El apellido paterno debe tener al menos 4 caracteres de longitud.
+                  </div>
+                </div>
   
-          <mat-form-field>
-            <mat-select placeholder="Color" [(value)]="seletedColor">
-              <mat-option *ngFor="let color of colores" [value]="color">
-                {{color}}
+                <mat-form-field class="field-full">
+                  <input type="text" matInput placeholder="Apellido materno" [(ngModel)]="user.aM" name="aM" #aM="ngModel" minlength="4">
+                </mat-form-field>
+
+                <div *ngIf="aM.invalid && (aM.dirty || aM.touched)" class="alert alert-danger">
+                  <div *ngIf="aM.errors.minlength">
+                    El apellido materno debe tener al menos 4 caracteres de longitud.
+                  </div>
+                </div>
+            </div>
+            <div class="separador">
+                <mat-form-field class="field-full">
+                  <input type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" required email>
+                </mat-form-field>
+    
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                  <div *ngIf="email.errors.required">
+                    El email es requerido.
+                  </div>
+                  <div *ngIf="email.errors.email && !email.errors.required">
+                    Email invalido.
+                  </div>
+                </div>
+    
+                <mat-form-field class="field-full">
+                    <input type="password" matInput placeholder="Password" [(ngModel)]="password" #psw="ngModel" name="password" required minlength="6">
+                </mat-form-field>
+                
+                <div *ngIf="psw.invalid && (psw.dirty || psw.touched)" class="alert alert-danger">
+                  <div *ngIf="psw.errors.required">
+                    La contraseña es requerida.
+                  </div>
+                  <div *ngIf="psw.errors.minlength">
+                    La contraseña debe tener al menos 6 caracteres de longitud.
+                  </div>
+                </div>
+    
+                <mat-form-field class="field-full">
+                  <input type="password" matInput placeholder="Confirm password" [(ngModel)]="passwordConfirm" #pswConfirm="ngModel" name="passwordConfirm" required >
+                </mat-form-field>
+    
+                <div *ngIf="pswConfirm.invalid && (pswConfirm.dirty || pswConfirm.touched)" class="alert alert-danger">
+                  <div *ngIf="pswConfirm.errors.required">
+                    La confirmacion de la contraseña es requerida.
+                  </div>
+                </div>
+            </div>        
+          </div>
+          <mat-form-field class="field-full field-tipo">
+            <mat-select placeholder="Tipo" [(value)]="user.tipoCuenta">
+              <mat-option *ngFor="let types of userTypes" [value]="types">
+                {{types.toLowerCase()}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
-    
-          <mat-form-field class="example-full-width">
-            <input type="number" matInput placeholder="Rodada" min="0">
           </mat-form-field>
         </div>
-    </form>
-    <button class="button add" mat-flat-button color="primary" matTooltip="Save user" (click)="openModal()">
-      <i class="material-icons">
-          person_add
-      </i>
-    </button>
+        <!-- Form for a user's bicycles -->
+        <h2 *ngIf="isUser()">Bicicleta</h2>
+        <div class="wrapper-form" *ngIf="isUser()">
+          <div class="content-form">
+            <div class="separador">
+              <mat-form-field class="field-full">
+                <input type="text" placeholder="Marcas" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="chooseFirstOption()">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getValue($event.option.value)'>
+                  <mat-option *ngFor="let marca of filteredOptions | async" [value]="marca">
+                    {{marca}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <div class="separador">
+              <mat-form-field class="field-full field-tipo">
+                <mat-select placeholder="Color" [(value)]="bike.color">
+                  <mat-option *ngFor="let color of colores" [value]="color">
+                    {{color}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="separador">
+              <mat-form-field class="field-full">
+                <input type="number" matInput placeholder="Rodada" min="0" [(ngModel)]="bike.rodada" name="rodada">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-qr" *ngIf="isUser()">
+            <h2>QR</h2>
+            <div class="qr">
+                <qrcode [qrdata]="myAngularxQrCode" [size]="256" [level]="'M'" *ngIf="isNotEmptyQR()"></qrcode>
+                <h5 *ngIf="!isNotEmptyQR()">Aquí se mostrará el QR al registrar la bicicleta</h5>
+            </div>
+            <button type="reset" class="button reset" mat-flat-button color="primary" matTooltip="New user" (click)="reset()" *ngIf="saveSuccess">
+              <i class="material-icons">
+                group_add
+              </i>
+            </button>
+        </div>
+      </form>
+      <div class="submit" *ngIf="!saveSuccess">
+        <button class="button add" mat-flat-button color="primary" matTooltip="Save user" (click)="openModal()">
+          <i class="material-icons">
+              person_add
+          </i>
+        </button>
+      </div>
   </div>
-</div>
