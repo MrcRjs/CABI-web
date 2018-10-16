@@ -9,6 +9,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { QRCodeModule } from 'angularx-qrcode';
+import {WebcamModule} from 'ngx-webcam';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
@@ -23,6 +24,7 @@ import { UsuariosEditComponent } from './usuarios-edit/usuarios-edit.component';
 
 // Modals
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
+import { ModalPhotoComponent } from './modal-photo/modal-photo.component';
 
 // Services
 import { ShareLoginService } from './services/shareLogin.service';
@@ -40,7 +42,8 @@ import { BicycleService } from './services/bicycle.service';
     UsuariosRegisterComponent,
     UsuariosEditComponent,
     // Modals
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    ModalPhotoComponent
   ],
   imports: [
     AppRoutingModule,
@@ -56,7 +59,8 @@ import { BicycleService } from './services/bicycle.service';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireModule,
-    QRCodeModule
+    QRCodeModule,
+    WebcamModule
   ],
   providers: [
     ShareLoginService,
@@ -66,7 +70,7 @@ import { BicycleService } from './services/bicycle.service';
     UserService,
     BicycleService
   ],
-  entryComponents: [ModalConfirmComponent],
+  entryComponents: [ModalConfirmComponent, ModalPhotoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

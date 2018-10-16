@@ -40,8 +40,7 @@
                     El apellido materno debe tener al menos 4 caracteres de longitud.
                   </div>
                 </div>
-            </div>
-            <div class="separador">
+
                 <mat-form-field class="field-full">
                   <input type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" required email>
                 </mat-form-field>
@@ -77,15 +76,26 @@
                     La confirmacion de la contraseña es requerida.
                   </div>
                 </div>
+
+                <mat-form-field class="field-full field-tipo">
+                  <mat-select placeholder="Tipo" [(value)]="user.tipoCuenta">
+                    <mat-option *ngFor="let types of userTypes" [value]="types">
+                      {{types.toLowerCase()}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="separador thumbnail-picture">
+              <div class="wrapper-photo">
+                  <img class="photoImg" *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl"/>
+              </div>              
+              <button class="button photo" mat-flat-button color="primary" matTooltip="Take a picture" (click)="openModalPhoto()">
+                <i class="material-icons">
+                    photo_camera
+                </i>
+              </button>
             </div>        
           </div>
-          <mat-form-field class="field-full field-tipo">
-            <mat-select placeholder="Tipo" [(value)]="user.tipoCuenta">
-              <mat-option *ngFor="let types of userTypes" [value]="types">
-                {{types.toLowerCase()}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
         </div>
         <!-- Form for a user's bicycles -->
         <h2 *ngIf="isUser()">Bicicleta</h2>
@@ -116,8 +126,7 @@
               </mat-form-field>
             </div>
           </div>
-        </div>
-
+        </div>        
         <div class="content-qr" *ngIf="isUser()">
             <h2>QR</h2>
             <div class="qr">
@@ -136,6 +145,6 @@
           <i class="material-icons">
               person_add
           </i>
-        </button>
+        </button>        
       </div>
   </div>

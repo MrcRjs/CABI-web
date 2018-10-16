@@ -41,6 +41,32 @@ input {
     padding: 15px 35px;
 }
 
+.thumbnail-picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
+    height: 200px;
+    background-color: grey;
+    margin: 15px 0;
+}
+
+.photoImg{
+    width: 100%;
+    -moz-transform: scaleX(-1); /* Firefox */
+    -o-transform: scaleX(-1); /* Opera */
+    -webkit-transform: scaleX(-1); /* Chrome y Safari */
+    transform: scaleX(-1); /* w3org */
+    filter: FlipH; /* Internet Explorer */
+}
+
 .content-form,.content-qr {
     display: flex;
     flex-direction: column;
@@ -70,11 +96,16 @@ input {
 
 .button {
     border-radius: 20px;
-    margin-top: 15px;
+    margin: 15px;
 }
 
 .add {
     background-color: rgb(118 183 42);
+    width: 256px;
+}
+
+.photo {
+    background-color: #003b5c;
     width: 256px;
 }
 
@@ -104,8 +135,9 @@ input {
         width: 100%;
         padding: 20px;
     }
-    .field-tipo {
-        padding: 0 20px;
+    .wrapper-photo {
+        width: 400px;
+        height: 300px;
     }
 } 
 
@@ -118,8 +150,9 @@ input {
         width: 100%;
         padding: 20px;
     }
-    .field-tipo {
-        padding: 0 20px;
+    .wrapper-photo {
+        width: 500px;
+        height: 375px;
     }
 } 
 
@@ -132,7 +165,8 @@ input {
         width: 100%;
         padding: 20px;
     }
-    .field-tipo {
-        padding: 0 20px;
+    .wrapper-photo {
+        width: 500px;
+        height: 375px;
     }
 }

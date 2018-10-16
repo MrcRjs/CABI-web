@@ -13,3 +13,12 @@ body {
     box-sizing: border-box;
     background-image: linear-gradient(-90deg, #4069b4, #35cee2e7);
 }
+
+.modalPhoto .mat-dialog-container {
+    width: '600px';
+    height: '500px';
+    background: rgb(51, 143, 160);
+    border: 3px solid #317d97;
+    border-radius: 25px;
+    overflow: hidden;
+}

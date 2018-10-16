@@ -1,18 +1,20 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 // tslint:disable-next-line:import-blacklist
 import {map, startWith} from 'rxjs/operators';
 import { Bicicletas } from '../marcas-bicicleta';
 import { MatAutocomplete, MatDialog } from '@angular/material';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { ModalPhotoComponent } from '../modal-photo/modal-photo.component';
 import { User } from '../models/user.model';
 import { Bicycle } from '../models/bicycle.model';
 import { UserService } from '../services/user.service';
 import { BicycleService } from '../services/bicycle.service';
 import { environment } from '../../environments/environment';
 import * as firebase from 'firebase/app';
+import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 
 @Component({
   selector: 'app-usuarios-register',
@@ -35,6 +37,8 @@ export class UsuariosRegisterComponent implements OnInit {
 
   myAngularxQrCode = '';
   saveSuccess = false;
+
+  public webcamImage: WebcamImage = null;
 
   constructor(public dialog: MatDialog,
               private userService: UserService,
@@ -129,5 +133,20 @@ export class UsuariosRegisterComponent implements OnInit {
 
   reset() {
     this.saveSuccess = false;
+  }
+
+  openModalPhoto() {
+    const dialogRef = this.dialog.open( ModalPhotoComponent,
+      {
+          panelClass: 'modalPhoto'
+      } );
+
+    dialogRef.afterClosed()
+      .subscribe( result => {
+          console.log( 'El Dialogo se cerro' );
+          if (result) {
+            this.webcamImage = result;
+          }
+      });
   }
 }

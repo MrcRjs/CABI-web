@@ -1,0 +1,90 @@
+.content-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botonera {
+    background-color: #317a96;
+    border-radius: 0 0 15px 15px;
+    border: 2px solid #317694;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    border-radius: 20px;
+    margin: 15px 5px;
+    min-width: 70px;
+}
+
+.save {
+    background-color: rgb(118 183 42);
+}
+
+.photo {
+    background-color: #003b5c;
+}
+
+.new {
+    background-color: rgb(0 181 226);
+}
+
+.cancel {
+    background-color: rgb(255, 42, 42);
+}
+
+.photoImg{
+    width: 340px;
+    max-height: 460px;
+    margin-bottom: 4px;
+    -moz-transform: scaleX(-1); /* Firefox */
+    -o-transform: scaleX(-1); /* Opera */
+    -webkit-transform: scaleX(-1); /* Chrome y Safari */
+    transform: scaleX(-1); /* w3org */
+    filter: FlipH; /* Internet Explorer */
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .button {
+        margin-top: 15px;
+        min-width: 88px;
+    }
+    .photoImg{
+        width: 500px;
+        max-height: 375px;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .button {
+        margin-top: 15px;
+        min-width: 88px;
+    }
+    .photoImg{
+        width: 500px;
+        max-height: 375px;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .button {
+        margin-top: 15px;
+        min-width: 88px;
+    }
+    .photoImg{
+        width: 500px;
+        max-height: 375px;
+    }
+}

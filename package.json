@@ -32,6 +32,7 @@
     "angularx-qrcode": "^1.2.4",
     "core-js": "^2.5.4",
     "firebase": "^5.5.2",
+    "ngx-webcam": "^0.2.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
