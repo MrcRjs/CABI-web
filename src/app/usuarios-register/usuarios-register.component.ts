@@ -15,6 +15,7 @@ import { BicycleService } from '../services/bicycle.service';
 import { environment } from '../../environments/environment';
 import * as firebase from 'firebase/app';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import { UploadService } from '../services/upload.service';
 
 @Component({
   selector: 'app-usuarios-register',
@@ -43,7 +44,8 @@ export class UsuariosRegisterComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private userService: UserService,
               private bicycleService: BicycleService,
-              public notificacionSnackBar: MatSnackBar) {
+              public notificacionSnackBar: MatSnackBar,
+              public uploadService: UploadService) {
     this.bike = new Bicycle();
     this.user = new User();
     this.user.tipoCuenta = 'USUARIO';
@@ -114,8 +116,10 @@ export class UsuariosRegisterComponent implements OnInit {
                       this.bike.uid = credential.user.uid;
                       this.bike.id = credential.user.uid + '_' + this.obtenerFechaHora();
                       this.bicycleService.create(this.bike).then(resCreateBike => {
-                        this.myAngularxQrCode = this.bike.id;
-                        this.saveSuccess = true;
+                        this.uploadService.upload(this.webcamImage, credential.user.uid).then(UploadTaskSnapshot => {
+                          this.myAngularxQrCode = this.bike.id;
+                          this.saveSuccess = true;
+                        }).catch(error => this.sendMessageError(error.message));
                       }).catch(error => this.sendMessageError(error.message));
                     }
                   }).catch(error => this.sendMessageError(error.message));
@@ -133,6 +137,7 @@ export class UsuariosRegisterComponent implements OnInit {
 
   reset() {
     this.saveSuccess = false;
+    this.webcamImage = null;
   }
 
   openModalPhoto() {
@@ -143,10 +148,18 @@ export class UsuariosRegisterComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe( result => {
-          console.log( 'El Dialogo se cerro' );
           if (result) {
             this.webcamImage = result;
           }
       });
+  }
+
+  saveImage(webcamImage: WebcamImage) {
+    this.uploadService.upload(webcamImage, 'Hola Mundo').then(UploadTaskSnapshot => {
+      console.log(UploadTaskSnapshot.state);
+    }).catch(error => console.log(error));
+    this.uploadService.task.percentageChanges().subscribe(x => {
+      console.log(x);
+    });
   }
 }

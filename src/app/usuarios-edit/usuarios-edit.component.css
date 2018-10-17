@@ -37,9 +37,42 @@ input {
     padding: 15px 35px;
 }
 
+.thumbnail-picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
+    height: 200px;
+    background-color: grey;
+    margin: 15px 0;
+}
+
+.photoImg{
+    width: 100%;
+    -moz-transform: scaleX(-1); /* Firefox */
+    -o-transform: scaleX(-1); /* Opera */
+    -webkit-transform: scaleX(-1); /* Chrome y Safari */
+    transform: scaleX(-1); /* w3org */
+    filter: FlipH; /* Internet Explorer */
+}
+
 .content-form {
     display: flex;
     flex-direction: column;
+}
+
+.botonera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
 }
 
 .button {
@@ -52,12 +85,32 @@ input {
     width: 256px;
 }
 
+.photo {
+    background-color: #003b5c;
+}
+
+.cancel {
+    background-color: rgb(255, 42, 42);
+}
+
+.photo,.cancel {
+    margin: 0 5px;
+    width: 100%;
+}
+
 .submit {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.none,.none2 {
+    display: none;
+}
+
+.sin-foto {
+    color: #d7d5d5;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {} 
 
@@ -65,10 +118,55 @@ input {
 @media only screen and (min-width: 600px) {} 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {} 
+@media only screen and (min-width: 768px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .wrapper-photo {
+        width: 400px;
+        height: 300px;
+    }
+    .photo,.cancel {
+        width: 256px;
+    }
+} 
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {} 
+@media only screen and (min-width: 992px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .wrapper-photo {
+        width: 500px;
+        height: 375px;
+    }
+    .photo,.cancel {
+        width: 256px;
+    }
+} 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+    .content-form {
+        flex-direction: row;
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .wrapper-photo {
+        width: 500px;
+        height: 375px;
+    }
+    .photo,.cancel {
+        width: 256px;
+    }
+}

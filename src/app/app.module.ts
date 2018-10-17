@@ -13,6 +13,7 @@ import {WebcamModule} from 'ngx-webcam';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -55,6 +56,7 @@ import { BicycleService } from './services/bicycle.service';
       prefix: '',
       storageType: 'localStorage'
     }),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
