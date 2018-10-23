@@ -1,0 +1,137 @@
+.content-bike {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.button {
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.add {
+    background-color: rgb(118 183 42);
+    width: 256px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-form,.content-qr {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-qr {
+    justify-content: center;
+    align-items: center;
+}
+ 
+.qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff94;
+    border-radius: 20px;
+    border: 3px dashed #003b5c;
+    width: 124px;
+    height: 124px;
+}
+
+.qr h5{
+    color: #fff;
+    text-align: center;
+}
+
+.wrapper-form {
+    background-color: #fff;
+    border-radius: 3px;
+    min-width: 150px;
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
+.field-full {
+    display: block;
+}
+
+input {
+    text-transform: uppercase;
+}
+
+.separador {
+    text-align: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .content-bike {
+        flex-direction: row
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .qr {
+        width: 190px;
+        height: 190px;
+    }
+    .line {
+        border: .5px solid #fff;
+        min-height: 200px;
+        margin-top: 60px;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .content-bike {
+        flex-direction: row
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .qr {
+        width: 190px;
+        height: 190px;
+    }
+    .line {
+        border: .5px solid #fff;
+        min-height: 200px;
+        margin-top: 60px;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .content-bike {
+        flex-direction: row
+    }
+    .separador {
+        width: 100%;
+        padding: 20px;
+    }
+    .qr {
+        width: 190px;
+        height: 190px;
+    }
+    .line {
+        border: .5px solid #fff;
+        min-height: 200px;
+        margin-top: 60px;
+    }
+}

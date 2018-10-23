@@ -6,6 +6,8 @@ import { User } from '../models/user.model';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { ModalPhotoComponent } from '../modal-photo/modal-photo.component';
+import { ModalBikeComponent } from '../modal-bike/modal-bike.component';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 import { WebcamImage } from 'ngx-webcam';
 
 @Component({
@@ -107,5 +109,32 @@ export class UsuariosEditComponent implements OnInit {
   notHasPhoto() {
     // tslint:disable-next-line:triple-equals
     return this.photoStatus == 'notHasPhoto';
+  }
+
+  openModalBike() {
+    const dialogRef = this.dialog.open( ModalBikeComponent,
+      {
+          panelClass: 'modalBike'
+      } );
+
+    dialogRef.afterClosed()
+      .subscribe( result => {
+          if (result) {
+            this.webcamImage = result;
+          }
+      });
+  }
+
+  removeBike() {
+    const dialogRef = this.dialog.open( ModalConfirmComponent,
+      {
+          width: '300px'
+      } );
+      dialogRef.componentInstance.message = '¿Está seguro de eliminar remover esta bicicleta?';
+      dialogRef.componentInstance.messageResult = 'Bicicleta removida exitosamente.';
+    dialogRef.afterClosed()
+        .subscribe( result => {
+            console.log( 'El Dialogo se cerro' );
+        } );
   }
 }

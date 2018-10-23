@@ -7,12 +7,17 @@ import { MaterialModule } from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
 import { QRCodeModule } from 'angularx-qrcode';
 import {WebcamModule} from 'ngx-webcam';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
@@ -31,10 +36,14 @@ import { ModalBikeComponent } from './modal-bike/modal-bike.component';
 // Services
 import { ShareLoginService } from './services/shareLogin.service';
 import { AuthService } from './services/auth.service';
+<<<<<<< HEAD
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { NotAuthGuardService as NotAuthGuard } from './services/notAuth-guard.service';
 import { UserService } from './services/user.service';
 import { BicycleService } from './services/bicycle.service';
+=======
+import { AuthGuard } from 'app/services/auth-guard.service';
+>>>>>>> 9e9cbab... [WIP]Use Firebase Auth
 
 @NgModule({
   declarations: [
@@ -77,7 +86,12 @@ import { BicycleService } from './services/bicycle.service';
     UserService,
     BicycleService
   ],
+<<<<<<< HEAD
   entryComponents: [ModalConfirmComponent, ModalPhotoComponent, ModalBikeComponent],
+=======
+  providers: [AuthService, AuthGuard, ShareLoginService],
+  entryComponents: [ModalConfirmComponent],
+>>>>>>> 9e9cbab... [WIP]Use Firebase Auth
   bootstrap: [AppComponent]
 })
 export class AppModule { }

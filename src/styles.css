@@ -22,3 +22,17 @@ body {
     border-radius: 25px;
     overflow: hidden;
 }
+
+.modalBike .mat-dialog-container {
+    width: '600px';
+    height: '500px';
+    background: rgb(51, 143, 160);
+    border: 3px solid #317d97;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.mat-list .mat-list-item .mat-list-item-content, .mat-list .mat-list-option .mat-list-item-content, .mat-nav-list .mat-list-item .mat-list-item-content, .mat-nav-list .mat-list-option .mat-list-item-content, .mat-selection-list .mat-list-item .mat-list-item-content, .mat-selection-list .mat-list-option .mat-list-item-content {
+    justify-content: space-between;
+    padding: 0 !important;
+}
