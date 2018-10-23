@@ -26,6 +26,7 @@ import { UsuariosEditComponent } from './usuarios-edit/usuarios-edit.component';
 // Modals
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { ModalPhotoComponent } from './modal-photo/modal-photo.component';
+import { ModalBikeComponent } from './modal-bike/modal-bike.component';
 
 // Services
 import { ShareLoginService } from './services/shareLogin.service';
@@ -44,7 +45,8 @@ import { BicycleService } from './services/bicycle.service';
     UsuariosEditComponent,
     // Modals
     ModalConfirmComponent,
-    ModalPhotoComponent
+    ModalPhotoComponent,
+    ModalBikeComponent
   ],
   imports: [
     AppRoutingModule,
@@ -72,7 +74,7 @@ import { BicycleService } from './services/bicycle.service';
     UserService,
     BicycleService
   ],
-  entryComponents: [ModalConfirmComponent, ModalPhotoComponent],
+  entryComponents: [ModalConfirmComponent, ModalPhotoComponent, ModalBikeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
