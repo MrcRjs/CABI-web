@@ -5,7 +5,7 @@
             <div class="wrapper-form">
                 <div class="content-form">                
                     <mat-form-field class="field-full">
-                        <input type="text" placeholder="Marcas" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="chooseFirstOption()">
+                        <input type="text" placeholder="Marcas" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup.enter)="chooseFirstOption()" [(ngModel)]="bike.marca">
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getValue($event.option.value)'>
                             <mat-option *ngFor="let marca of filteredOptions | async" [value]="marca">
                                 {{marca}}
@@ -29,15 +29,15 @@
         <div class="separador">
             <div class="content-qr">
                 <h2>QR</h2>
-                <div class="qr">
-                    <qrcode [qrdata]="myAngularxQrCode" [size]="256" [level]="'M'" *ngIf="isNotEmptyQR()"></qrcode>
+                <div class="qr-modal">
+                    <qrcode [qrdata]="myAngularxQrCode" [size]="124" [level]="'M'" *ngIf="isNotEmptyQR()"></qrcode>
                     <h5 *ngIf="!isNotEmptyQR()">Aquí se mostrará el QR al registrar la bicicleta</h5>
                 </div>
             </div>
         </div>
     </div>
     <div class="submit">
-        <button class="button add" mat-flat-button color="primary" matTooltip="Add bike" (click)="save()">
+        <button class="button add" mat-flat-button color="primary" matTooltip={{tooltip}} (click)="save()">
             <i class="material-icons">
                 person_add
             </i>

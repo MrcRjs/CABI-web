@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatAutocomplete } from '@angular/material';
 import { Bicicletas } from '../marcas-bicicleta';
 import { Bicycle } from '../models/bicycle.model';
+import { BicycleService } from '../services/bicycle.service';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
@@ -20,10 +21,13 @@ export class ModalBikeComponent implements OnInit {
   seletedMarca = '';
   filteredOptions: Observable<string[]>;
   bike: Bicycle;
+  uid: string;
   @ViewChild(MatAutocomplete) matAutocomplete: MatAutocomplete;
   myAngularxQrCode = '';
+  tooltip: string;
 
   constructor(public dialogRef: MatDialogRef<ModalBikeComponent>,
+              public bicycleService: BicycleService,
               public notificacionSnackBar: MatSnackBar) {
                 this.bike = new Bicycle();
               }
@@ -34,6 +38,8 @@ export class ModalBikeComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+    // tslint:disable-next-line:triple-equals
+    this.tooltip = this.bike.uid == '' ? 'Save bike' : 'Edit bike';
   }
 
   private _filter(value: string): string[] {
@@ -43,10 +49,31 @@ export class ModalBikeComponent implements OnInit {
   }
 
   save() {
-    this.notificacionSnackBar.open( this.messageResult, '', {
-      duration: 2000,
-    } );
-    this.dialogRef.close(true);
+    // tslint:disable-next-line:triple-equals
+    if (this.bike.id && this.bike.id != '') {
+      this.bicycleService.udate(this.bike).then(resUpdateBike => {
+        this.sendMessageError('Bicicleta editada exitosamente.');
+      }).catch(error => this.sendMessageError(error.message));
+    } else {
+      this.bicycleService.getBicycle(this.uid).snapshotChanges().subscribe( bikes => {
+        const bikesA = [];
+        // tslint:disable-next-line:forin
+        for (const key in bikes.payload.toJSON()) {
+          const bike = bikes.payload.toJSON()[key];
+          bikesA.push(bike);
+        }
+        if (bikesA.length < 3) {
+          this.tooltip = 'Edit bike';
+          this.bike.uid = this.uid;
+          this.bike.id = this.uid + '_' + this.obtenerFechaHora();
+          this.bicycleService.create(this.bike).then(resCreateBike => {
+            this.myAngularxQrCode = this.bike.id;
+            this.sendMessageError('Bicicleta agregada exitosamente.');
+          }).catch(error => this.sendMessageError(error.message));
+        } else { this.sendMessageError('Solo puedes registrar 3 bicicletas.'); }
+      });
+    }
+    // this.dialogRef.close();
   }
 
   chooseFirstOption(): void {
@@ -62,4 +89,20 @@ export class ModalBikeComponent implements OnInit {
     return this.myAngularxQrCode != '';
   }
 
+  sendMessageError(message) {
+    this.notificacionSnackBar.open( message, '', {
+      duration: 2000,
+    } );
+  }
+
+  obtenerFechaHora() {
+    const currentdate = new Date();
+    const datetime = '' + currentdate.getDate()
+            + (currentdate.getMonth() + 1)
+            + currentdate.getFullYear()
+            + currentdate.getHours()
+            + currentdate.getMinutes()
+            + currentdate.getSeconds();
+    return datetime;
+  }
 }

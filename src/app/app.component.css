@@ -96,7 +96,9 @@
     transform: scale(1);
   }
 
-
+  .mat-nav-list .mat-list-item {
+    padding: 0 16px;
+  }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {} 
 

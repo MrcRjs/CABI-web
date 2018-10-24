@@ -42,7 +42,7 @@
                 </div>
 
                 <mat-form-field class="field-full">
-                  <input type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" required email>
+                  <input class="email" type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel" required email>
                 </mat-form-field>
     
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
