@@ -49,20 +49,12 @@
                     </mat-select>
                 </mat-form-field>
                 <mat-list>
-                    <mat-list-item> 
-                        <div class="item-list-bike" (click)="openModalBike()">Pepper</div>
-                        <i class="item-list-close material-icons" matTooltip="Remove bike" (click)="removeBike()">close</i>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <div class="item-list-bike" (click)="openModalBike()">Salt</div>
-                        <i class="item-list-close material-icons" matTooltip="Remove bike" (click)="removeBike()">close</i> 
-                    </mat-list-item>
-                    <mat-list-item> 
-                        <div class="item-list-bike" (click)="openModalBike()">Paprika</div>
-                        <i class="item-list-close material-icons" matTooltip="Remove bike" (click)="removeBike()">close</i>
+                    <mat-list-item *ngFor="let bike of bikes"> 
+                        <div class="item-list-bike" (click)="openModalBike(bike)">{{bike.marca}}</div>
+                        <i class="item-list-close material-icons" matTooltip="Remove bike" (click)="removeBike(bike)">close</i>
                     </mat-list-item>
                 </mat-list>
-                <button class="button add-bike" mat-flat-button color="primary" matTooltip="Add bike" (click)="openModalBike()">
+                <button *ngIf="!bikesFull()" class="button add-bike" mat-flat-button color="primary" matTooltip="Add bike" (click)="openModalBike()">
                     <i class="material-icons">
                         directions_bike
                     </i>

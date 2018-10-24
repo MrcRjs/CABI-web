@@ -28,4 +28,9 @@ export class BicycleService {
     const path = `/bicicletas/${bike.uid}/${bike.id}`;
     return this.db.object(path).update(bike);
   }
+
+  remove(bike: Bicycle) {
+    const path = `/bicicletas/${bike.uid}/${bike.id}`;
+    return this.db.object(path).remove();
+  }
 }

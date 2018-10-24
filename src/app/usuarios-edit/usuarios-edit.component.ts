@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { BicycleService } from '../services/bicycle.service';
 import { UploadService } from '../services/upload.service';
 import { User } from '../models/user.model';
 import { MatSnackBar, MatDialog } from '@angular/material';
@@ -9,6 +10,7 @@ import { ModalPhotoComponent } from '../modal-photo/modal-photo.component';
 import { ModalBikeComponent } from '../modal-bike/modal-bike.component';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 import { WebcamImage } from 'ngx-webcam';
+import { Bicycle } from '../models/bicycle.model';
 
 @Component({
   selector: 'app-usuarios-edit',
@@ -25,13 +27,16 @@ export class UsuariosEditComponent implements OnInit {
   // notHasPhoto, waiting, success
   photoStatus = 'waiting';
 
+  bikes: Bicycle[];
   constructor(private route: ActivatedRoute,
               private userService: UserService,
+              private bicycleService: BicycleService,
               public notificacionSnackBar: MatSnackBar,
               public uploadService: UploadService,
               private router: Router,
               public dialog: MatDialog) {
     this.user = new User();
+    this.bikes = [];
   }
 
   ngOnInit() {
@@ -44,6 +49,16 @@ export class UsuariosEditComponent implements OnInit {
               this.uploadService.getUrl(this.user.uid).subscribe(url => {
                 this.urlFirebaseImage = url;
                 this.photoStatus = 'success';
+
+                this.bicycleService.getBicycle(this.user.uid).snapshotChanges().subscribe( bikes => {
+                  this.bikes = [];
+                  // tslint:disable-next-line:forin
+                  for (const key in bikes.payload.toJSON()) {
+                    const bike = bikes.payload.toJSON()[key];
+                    this.bikes.push(bike);
+                  }
+                });
+
               }, error => {
                 this.photoStatus = 'notHasPhoto';
                 this.sendMessageError(error.message);
@@ -111,21 +126,23 @@ export class UsuariosEditComponent implements OnInit {
     return this.photoStatus == 'notHasPhoto';
   }
 
-  openModalBike() {
+  openModalBike(bike?: Bicycle) {
     const dialogRef = this.dialog.open( ModalBikeComponent,
       {
           panelClass: 'modalBike'
       } );
-
+      dialogRef.componentInstance.uid = this.user.uid;
+      if (bike) {
+        dialogRef.componentInstance.bike = bike;
+        dialogRef.componentInstance.myAngularxQrCode = bike.id;
+      }
     dialogRef.afterClosed()
       .subscribe( result => {
-          if (result) {
-            this.webcamImage = result;
-          }
+        console.log(result);
       });
   }
 
-  removeBike() {
+  removeBike(bike: Bicycle) {
     const dialogRef = this.dialog.open( ModalConfirmComponent,
       {
           width: '300px'
@@ -134,7 +151,16 @@ export class UsuariosEditComponent implements OnInit {
       dialogRef.componentInstance.messageResult = 'Bicicleta removida exitosamente.';
     dialogRef.afterClosed()
         .subscribe( result => {
-            console.log( 'El Dialogo se cerro' );
-        } );
+          if (result) {
+            this.bicycleService.remove(bike).then(resRemoveBike => {
+              this.sendMessageError('Bicicleta eliminada exitosamente.');
+            }).catch(error => this.sendMessageError(error.message));
+          }
+        });
+  }
+
+  bikesFull() {
+    // tslint:disable-next-line:triple-equals
+    return this.bikes.length == 3;
   }
 }

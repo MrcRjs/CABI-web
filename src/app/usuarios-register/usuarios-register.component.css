@@ -2,6 +2,10 @@ input {
     text-transform: uppercase;
 }
 
+.email {
+    text-transform: inherit;
+}
+
 .marco {
     display: flex;
     flex-direction: column;
