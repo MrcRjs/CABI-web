@@ -107,6 +107,7 @@ export class UsuariosEditComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe( result => {
           if (result) {
+            this.photoStatus = 'success';
             this.webcamImage = result;
           }
       });
