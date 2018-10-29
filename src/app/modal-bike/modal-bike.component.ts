@@ -49,29 +49,22 @@ export class ModalBikeComponent implements OnInit {
   }
 
   save() {
+    console.log('SAVE() ---> ModalBike.');
+    console.log(this.bike);
     // tslint:disable-next-line:triple-equals
     if (this.bike.id && this.bike.id != '') {
       this.bicycleService.udate(this.bike).then(resUpdateBike => {
         this.sendMessageError('Bicicleta editada exitosamente.');
       }).catch(error => this.sendMessageError(error.message));
     } else {
-      this.bicycleService.getBicycle(this.uid).snapshotChanges().subscribe( bikes => {
-        const bikesA = [];
-        // tslint:disable-next-line:forin
-        for (const key in bikes.payload.toJSON()) {
-          const bike = bikes.payload.toJSON()[key];
-          bikesA.push(bike);
-        }
-        if (bikesA.length < 3) {
-          this.tooltip = 'Edit bike';
-          this.bike.uid = this.uid;
-          this.bike.id = this.uid + '_' + this.obtenerFechaHora();
-          this.bicycleService.create(this.bike).then(resCreateBike => {
-            this.myAngularxQrCode = this.bike.id;
-            this.sendMessageError('Bicicleta agregada exitosamente.');
-          }).catch(error => this.sendMessageError(error.message));
-        } else { this.sendMessageError('Solo puedes registrar 3 bicicletas.'); }
-      });
+      this.tooltip = 'Edit bike';
+      this.bike.uid = this.uid;
+      this.bike.id = this.uid + '_' + this.obtenerFechaHora();
+      this.bicycleService.create(this.bike).then(resCreateBike => {
+        this.myAngularxQrCode = this.bike.id;
+        this.sendMessageError('Bicicleta agregada exitosamente.');
+        console.log('Bicicleta agregada exitosamente.');
+      }).catch(error => this.sendMessageError(error.message));
     }
     // this.dialogRef.close();
   }
