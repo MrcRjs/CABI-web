@@ -154,7 +154,7 @@ export class UsuariosEditComponent implements OnInit {
         .subscribe( result => {
           if (result) {
             this.bicycleService.remove(bike).then(resRemoveBike => {
-              this.sendMessageError('Bicicleta eliminada exitosamente.');
+              // this.sendMessageError('Bicicleta eliminada exitosamente.');
             }).catch(error => this.sendMessageError(error.message));
           }
         });
