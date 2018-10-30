@@ -33,3 +33,27 @@ export class AuthService {
     return this.afAuth.auth.signOut();
   }
 }
+
+export function loginErrorMesssages(error){
+  // Used to translate firebase error messages
+  // https://firebase.google.com/docs/auth/admin/errors
+  switch(error.code){
+    case 'auth/invalid-email': {
+      return 'Ingresa una dirección de email válida';
+      break;
+    }
+    case 'auth/user-not-found':{
+      return 'Usuario o contraseña incorrectos';
+      break;
+    }
+    case 'auth/wrong-password':{
+      return 'Usuario o contraseña incorrectos';
+      break;
+    }
+    default:{
+      return error.message;
+      break;
+    }
+  }
+
+}

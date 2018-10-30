@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShareLoginService } from '../services/shareLogin.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { AuthService } from '../services/auth.service';
+import { AuthService, loginErrorMesssages } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { MatSnackBar } from '@angular/material';
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         });
       }
     })
-    .catch(error => this.sendMessageError(error.message));
+    .catch(error => this.sendMessageError(loginErrorMesssages(error)));
   }
 
   sendMessageError(message) {
